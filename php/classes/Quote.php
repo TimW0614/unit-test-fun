@@ -320,7 +320,7 @@ class Quote implements \JsonSerializable {
 	public static function getQuoteByAuthor(\PDO $pdo, string $quoteAuthor): \SplFixedArray {
 		//enforce the string is secure or toss it
 		$quoteAuthor = trim($quoteAuthor);
-		$quoteAuthor = filter_var($quoteAuthor, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		$quoteAuthor = filter_var($quoteAuthor, FILTER_SANITIZE_STRING);
 		if(empty($quoteAuthor) === true) {
 			throw(new \PDOException("the search criteria are insecure"));
 		}
