@@ -82,7 +82,7 @@ class Quote implements \JsonSerializable {
 	 * @return int quoteId the main identifier for a specific quote object
 	 */
 
-	public function getQuoteId(): int {
+	public function eId(): int {
 		return ($this->quoteId);
 	}
 
@@ -320,9 +320,9 @@ class Quote implements \JsonSerializable {
 	public static function getQuoteByAuthor(\PDO $pdo, string $quoteAuthor): \SplFixedArray {
 		//enforce the string is secure or toss it
 		$quoteAuthor = trim($quoteAuthor);
-		$quoteAuthor = filter_var($quoteAuthor, FILTER_SANITIZE_STRING);
+		$quoteAuthor = filter_var($quoteAuthor, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($quoteAuthor) === true) {
-			throw(new \PDOException("the search criteria are insecure "));
+			throw(new \PDOException("the search criteria are insecure"));
 		}
 
 		//create query template: LIKE in the query allows for multiple objects to be returned.
