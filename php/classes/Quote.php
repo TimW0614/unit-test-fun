@@ -82,7 +82,7 @@ class Quote implements \JsonSerializable {
 	 * @return int quoteId the main identifier for a specific quote object
 	 */
 
-	public function eId(): int {
+	public function getQuoteId(): int {
 		return ($this->quoteId);
 	}
 
@@ -322,7 +322,7 @@ class Quote implements \JsonSerializable {
 		$quoteAuthor = trim($quoteAuthor);
 		$quoteAuthor = filter_var($quoteAuthor, FILTER_SANITIZE_STRING);
 		if(empty($quoteAuthor) === true) {
-			throw(new \PDOException("the search criteria are insecure"));
+			throw(new \PDOException("the search criteria are insecure "));
 		}
 
 		//create query template: LIKE in the query allows for multiple objects to be returned.
